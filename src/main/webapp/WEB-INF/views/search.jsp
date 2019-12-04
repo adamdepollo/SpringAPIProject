@@ -16,15 +16,15 @@
 	</form>
 	<br>
 	<form action="/search-venue">
-		<input type="text" name="venue" placeholder="Venue"> <input
-			type="submit" value="Find Event">
+		<input type="text" name="venue" placeholder="Venue"> 
+		<input type="submit" value="Find Event">
 	</form>
 
 	<button type="button" class="btn btn-danger">Bucket List</button>
 	<br>
 	<br>
 	<br>
-	
+
 	<a href="/"><button type="button" class="btn btn-warning">Home</button></a>
 
 </body>

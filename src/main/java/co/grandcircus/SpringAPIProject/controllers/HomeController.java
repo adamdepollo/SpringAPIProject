@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.SpringAPIProject.pojos.EventResults;
 import co.grandcircus.SpringAPIProject.pojos.FirstLayer;
+import co.grandcircus.SpringAPIProject.pojos.FirstLayerVenue;
+import co.grandcircus.SpringAPIProject.pojos.VenueResults;
 
 @Controller
 public class HomeController {
@@ -48,5 +50,21 @@ public class HomeController {
 		FirstLayer fl = response.getBody().getEmb();
 		
 		return new ModelAndView("results", "t", fl.getEvents());
+	}
+	
+	@RequestMapping("/search-venue")
+	public ModelAndView searchVenue(String venue) {
+		System.out.println(venue);
+		String url = "https://app.ticketmaster.com/discovery/v2/venues.json?keyword=" + venue + "&countryCode=US&apikey=" + ticketmasterKey;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.USER_AGENT, "test");
+
+		ResponseEntity<VenueResults> response = rt.exchange(url, HttpMethod.GET,
+				new HttpEntity<String>("parameters", headers), VenueResults.class);
+		System.out.println(response.getBody());
+		FirstLayerVenue fl = response.getBody().getEmb();
+		System.out.println(fl);
+		
+		return new ModelAndView("venue-results", "t", fl.getVenues());
 	}
 }
