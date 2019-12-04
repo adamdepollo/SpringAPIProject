@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.grandcircus.SpringAPIProject.pojos.Event;
+import co.grandcircus.SpringAPIProject.pojos.EventResults;
+import co.grandcircus.SpringAPIProject.pojos.FirstLayer;
 
 @Controller
 public class HomeController {
@@ -28,10 +29,10 @@ public class HomeController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.USER_AGENT, "test");
 
-		ResponseEntity<Event> response = rt.exchange(url, HttpMethod.GET,
-				new HttpEntity<String>("parameters", headers), Event.class);
-
-		return new ModelAndView("index", "t", response.getBody());
+		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
+				new HttpEntity<String>("parameters", headers), EventResults.class);
+		FirstLayer fl = response.getBody().getEmb();
+		return new ModelAndView("index", "t", fl.getEvents());
 
 	}
 }

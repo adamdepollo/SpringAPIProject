@@ -12,14 +12,22 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
-<table>
-  <tr>
-    <td>${t.name }</td>
-  </tr>
-</table>
-
-${t.name }
-</div>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Event Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="e" items="${t}" varStatus="i">
+					<tr>
+						<th>${i.count}</th>
+						<td>${e.name}</td>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
