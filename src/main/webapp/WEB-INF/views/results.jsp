@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Search Results</title>
 <link
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css"
 	rel="stylesheet"
@@ -13,8 +13,41 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<h1>Search Results</h1>
 
-	<h1>Search For Another Event</h1>
+
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Result #</th>
+					<th>Event Name</th>
+					<th>Price</th>
+					<th>Add To Bucket List</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="e" items="${t}" varStatus="i">
+					<!-- Input actual EL Tags for table when ready -->
+					<tr>
+						<th>${i.count}</th>
+						<td>${e.name}</td>
+						<td>${String.format("%.2f", e.priceRanges[0].getMin())}-
+							$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+						<td><button type="button" class="btn btn-warning">Add
+								to Bucket List</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	
+		<a href="/bucketlist"><button type="button" class="btn btn-danger" style="float: right;">   Go To Bucket  
+			List</button></a>
+	<br>
+	<br>
+		<h2>Search For Another Event</h2>
 	<form action="/search-event">
 		<input type="text" name="name" placeholder="Event Name"> <input
 			type="text" name="city" placeholder="City"> <input
@@ -25,33 +58,13 @@
 		<input type="text" name="venue" placeholder="Venue"> <input
 			type="submit" value="Find Event">
 	</form>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	
 
-
-
-	<a href="/bucketlist"><button type="button" class="btn btn-danger">Bucket List</button></a>
-
-	<div class="container">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Result #</th>
-					<th>Event Name</th>
-					<th>Venue</th>
-					<th>Price</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="e" items="${t}" varStatus="i">
-					<!-- Input actual EL Tags for table when ready -->
-					<tr>
-						<th>${i.count}</th>
-						<td>${e.name}<button type="button" class="btn btn-primary">Add to Bucket List</button></td>
-						<td>${String.format("%.2f", e.priceRanges[0].getMin())} - $${String.format("%.2f", e.priceRanges[0].getMax())}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
 
 </body>
 </html>
