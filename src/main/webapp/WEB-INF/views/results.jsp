@@ -45,12 +45,7 @@
 						</c:choose>
 
 
-						<td><form action="add-to-bucketlist">
-								<input type="hidden" name="u" value="${user}"> <input
-									type="hidden" name="e" value="${e}"><input
-									type="Submit" class="btn btn-warning"
-									value="Add to Bucket List">
-							</form></td>
+						<td><a href="add-event?e=${e}"class="btn btn-warning">Save Event to Bucketlist</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

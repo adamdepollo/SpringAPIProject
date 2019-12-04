@@ -1,5 +1,6 @@
 package co.grandcircus.SpringAPIProject.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.grandcircus.SpringAPIProject.pojos.Event;
 import co.grandcircus.SpringAPIProject.pojos.EventResults;
 import co.grandcircus.SpringAPIProject.pojos.FirstLayer;
 import co.grandcircus.SpringAPIProject.pojos.FirstLayerVenue;
 import co.grandcircus.SpringAPIProject.pojos.VenueResults;
+import co.grandcircus.SpringAPIProject.repos.EventRepo;
 
 @Controller
 public class HomeController {
@@ -22,6 +25,9 @@ public class HomeController {
 	String ticketmasterKey;
 
 	RestTemplate rt = new RestTemplate();
+	
+	@Autowired
+	EventRepo er;
 
 	@RequestMapping("/search")
 	public ModelAndView search() {
@@ -80,5 +86,11 @@ public class HomeController {
 		FirstLayer fl = response.getBody().getEmb();
 
 		return new ModelAndView("results", "t", fl.getEvents());
+	}
+	
+	@RequestMapping("/save-event")
+	public ModelAndView saveEvent(Event e) {
+		er.save(e);
+		return new ModelAndView("bucketlist", "events", er.findAll());
 	}
 }

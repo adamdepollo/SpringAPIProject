@@ -1,10 +1,18 @@
 package co.grandcircus.SpringAPIProject.pojos;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name="events")
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Event {
 
+	@Id
+	private String id;
 	private String url;
 	private String name;
 	private PriceRanges[] priceRanges;
@@ -15,11 +23,22 @@ public class Event {
 	}
 
 
-	public Event(String url, String name, PriceRanges[] priceRanges) {
+	public Event(String id, String url, String name, PriceRanges[] priceRanges) {
 		super();
+		this.id = id;
 		this.url = url;
 		this.name = name;
 		this.priceRanges = priceRanges;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
@@ -51,5 +70,7 @@ public class Event {
 	public void setPriceRanges(PriceRanges[] priceRanges) {
 		this.priceRanges = priceRanges;
 	}
+
+
 	
 }
