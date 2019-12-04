@@ -1,5 +1,6 @@
 package co.grandcircus.SpringAPIProject.pojos;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +17,16 @@ public class User {
 	
 	private String username;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private BucketList bl;
 	
 	public User() {
 		super();
+	}
+	
+	public User(String username) {
+		super();
+		this.username = username;
 	}
 
 	public User(Integer id, String username, BucketList bl) {

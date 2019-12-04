@@ -13,21 +13,15 @@
 </head>
 <body>
 	<div class="container">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Event Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="e" items="${t}" varStatus="i">
-					<tr>
-						<th>${i.count}</th>
-						<td>${e.name}</td>
-				</c:forEach>
-			</tbody>
-		</table>
+		<form action="login" method="post">
+		<br>
+			<div class="form-group">
+				<label for="login">Username</label> <input type="text"
+					class="form-control" id="login" aria-describedby="emailHelp"
+					placeholder="Enter username" name="username">
+			</div>
+			<button type="submit" class="btn btn-dark">Log In</button>
+		</form>
 	</div>
 </body>
 </html>
