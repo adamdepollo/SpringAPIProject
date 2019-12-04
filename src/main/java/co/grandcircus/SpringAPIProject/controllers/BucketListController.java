@@ -16,14 +16,6 @@ public class BucketListController {
 
 	@Autowired
 	BucketListRepo b;
-
-	@RequestMapping("/")
-	public ModelAndView index() {
-		List<BucketList> bucket = b.findAll();
-
-		return new ModelAndView("bucketlist", "bl", bucket);
-
-	}
 	
 	@RequestMapping("add-event")
 	public ModelAndView addPerson(BucketList bDetails) {
