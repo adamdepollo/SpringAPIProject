@@ -54,17 +54,27 @@ public class HomeController {
 	
 	@RequestMapping("/search-venue")
 	public ModelAndView searchVenue(String venue) {
-		System.out.println(venue);
 		String url = "https://app.ticketmaster.com/discovery/v2/venues.json?keyword=" + venue + "&countryCode=US&apikey=" + ticketmasterKey;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.USER_AGENT, "test");
 
 		ResponseEntity<VenueResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), VenueResults.class);
-		System.out.println(response.getBody());
 		FirstLayerVenue fl = response.getBody().getEmb();
-		System.out.println(fl);
 		
 		return new ModelAndView("venue-results", "t", fl.getVenues());
+	}
+	
+	@RequestMapping("/search-event-at-venue")
+	public ModelAndView searchVenueEvents(String venueId) {
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + venueId + "&countryCode=US&apikey=" + ticketmasterKey;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.USER_AGENT, "test");
+
+		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
+				new HttpEntity<String>("parameters", headers), EventResults.class);
+		FirstLayer fl = response.getBody().getEmb();
+		
+		return new ModelAndView("results", "t", fl.getEvents());
 	}
 }

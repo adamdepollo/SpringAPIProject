@@ -10,16 +10,19 @@ public class Venue {
 	private City city;
 
 	private State state;
+	
+	String venueId;
 
 	public Venue() {
 		super();
 	}
 
-	public Venue(String name, City city, State state) {
+	public Venue(String name, City city, State state, String venueId) {
 		super();
 		this.name = name;
 		this.city = city;
 		this.state = state;
+		this.venueId = venueId;
 	}
 
 	public String getName() {
@@ -45,5 +48,15 @@ public class Venue {
 	public void setState(State state) {
 		this.state = state;
 	}
+
+	public String getVenueId() {
+		return venueId;
+	}
+
+	public void setVenueId(String venueId) {
+		this.venueId = venueId;
+	}
+
+	
 
 }
