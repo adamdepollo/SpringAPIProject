@@ -16,6 +16,7 @@ public class PriceRanges {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private Double min;
 	private Double max;
 	
@@ -55,6 +56,14 @@ public class PriceRanges {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Event getEventAssigned() {
+		return eventAssigned;
+	}
+
+	public void setEventAssigned(Event eventAssigned) {
+		this.eventAssigned = eventAssigned;
 	}
 	
 	

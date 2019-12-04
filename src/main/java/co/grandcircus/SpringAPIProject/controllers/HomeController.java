@@ -1,5 +1,7 @@
 package co.grandcircus.SpringAPIProject.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -17,6 +19,7 @@ import co.grandcircus.SpringAPIProject.pojos.FirstLayer;
 import co.grandcircus.SpringAPIProject.pojos.FirstLayerVenue;
 import co.grandcircus.SpringAPIProject.pojos.VenueResults;
 import co.grandcircus.SpringAPIProject.repos.EventRepo;
+import co.grandcircus.SpringAPIProject.repos.PriceRangesRepo;
 
 @Controller
 public class HomeController {
@@ -28,6 +31,9 @@ public class HomeController {
 
 	@Autowired
 	EventRepo er;
+
+	@Autowired
+	PriceRangesRepo prr;
 
 	@RequestMapping("/search")
 	public ModelAndView search() {
@@ -101,12 +107,17 @@ public class HomeController {
 		Event e = fl.getEvents().get(0);
 		System.out.println(e.getName());
 		er.save(e);
-		return new ModelAndView("bucketlist", "events", er.findAll());
+		if (e.getPriceRanges().get(0) != null) {
+			e.getPriceRanges().get(0).setEventAssigned(e);
+			prr.save(e.getPriceRanges().get(0));
+		}
+		List<Event> events = er.findAll();
+		return new ModelAndView("bucketlist", "events", events);
 	}
 
 	@RequestMapping("/delete-event")
-	public ModelAndView deleteEvent(Event e) {
-		er.deleteById(e.getId());
+	public ModelAndView deleteEvent(String id) {
+		er.delete(er.findById(id));
 		return new ModelAndView("bucketlist", "events", er.findAll());
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,17 +30,17 @@
 						<td>${e.name}</td>
 
 						<c:choose>
-							<c:when test="${empty e.priceRanges[0].getMin()}">
+							<c:when test="${empty e.getPriceRanges().get(0).getMin()}">
 								<td>Unknown</td>
 							</c:when>
 							<c:otherwise>
-								<td>$${String.format("%.2f", e.priceRanges[0].getMin())}-
-									$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+								<td>$${String.format("%.2f", e.getPriceRanges().get(0).getMin())} -
+									$${String.format("%.2f", e.getPriceRanges().get(0).getMax())}</td>
 							</c:otherwise>
 						</c:choose>
 
 
-						<td><a href="save-event?e=${e}"class="btn btn-warning">Save Event to Bucketlist</a></td>
+						<td><a href="delete-event?id=${e.getId()}"class="btn btn-warning">Delete Event</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

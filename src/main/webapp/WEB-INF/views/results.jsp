@@ -35,12 +35,12 @@
 						<td>${e.name}</td>
 
 						<c:choose>
-							<c:when test="${empty e.priceRanges[0].getMin()}">
+							<c:when test="${empty e.getPriceRanges().get(0).getMin()}">
 								<td>Unknown</td>
 							</c:when>
 							<c:otherwise>
-								<td>$${String.format("%.2f", e.priceRanges[0].getMin())}-
-									$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+								<td>$${String.format("%.2f", e.getPriceRanges().get(0).getMin())}-
+									$${String.format("%.2f", e.getPriceRanges().get(0).getMax())}</td>
 							</c:otherwise>
 						</c:choose>
 

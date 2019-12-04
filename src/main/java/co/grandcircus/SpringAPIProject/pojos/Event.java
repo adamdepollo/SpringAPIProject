@@ -1,11 +1,13 @@
 package co.grandcircus.SpringAPIProject.pojos;
 
-import javax.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,8 +24,8 @@ public class Event {
 	private String url;
 	private String name;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private PriceRanges[] priceRanges;
+	@OneToMany(mappedBy = "eventAssigned", orphanRemoval = true)
+	private List<PriceRanges> priceRanges;
 	
 	
 	public Event() {
@@ -31,12 +33,23 @@ public class Event {
 	}
 
 
-	public Event(String id, String url, String name, PriceRanges[] priceRanges) {
+	public Event(Integer event_id, String id, String url, String name, ArrayList<PriceRanges> priceRanges) {
 		super();
+		this.event_id = event_id;
 		this.id = id;
 		this.url = url;
 		this.name = name;
 		this.priceRanges = priceRanges;
+	}
+
+
+	public Integer getEvent_id() {
+		return event_id;
+	}
+
+
+	public void setEvent_id(Integer event_id) {
+		this.event_id = event_id;
 	}
 
 
@@ -70,15 +83,15 @@ public class Event {
 	}
 
 
-	public PriceRanges[] getPriceRanges() {
+	public List<PriceRanges> getPriceRanges() {
 		return priceRanges;
 	}
 
 
-	public void setPriceRanges(PriceRanges[] priceRanges) {
+	public void setPriceRanges(List<PriceRanges> priceRanges) {
 		this.priceRanges = priceRanges;
 	}
-
-
+	
+	
 	
 }
