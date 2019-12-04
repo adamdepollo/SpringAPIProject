@@ -1,5 +1,7 @@
 package co.grandcircus.SpringAPIProject.pojos;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -7,8 +9,21 @@ public class Event {
 
 	private String url;
 	private String name;
+	private ArrayList<PriceRanges> priceRanges;
 	
 	
+	public Event(String url, String name, ArrayList<PriceRanges> priceRanges) {
+		super();
+		this.url = url;
+		this.name = name;
+		this.priceRanges = priceRanges;
+	}
+	public ArrayList<PriceRanges> getPriceRanges() {
+		return priceRanges;
+	}
+	public void setPriceRanges(ArrayList<PriceRanges> priceRanges) {
+		this.priceRanges = priceRanges;
+	}
 	public String getUrl() {
 		return url;
 	}
