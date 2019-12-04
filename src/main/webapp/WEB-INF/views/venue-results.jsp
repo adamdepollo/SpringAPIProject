@@ -13,20 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
-	<h1>Search For Another Event</h1>
-	<form action="/search-event">
-		<input type="text" name="name" placeholder="Event Name"> <input
-			type="text" name="city" placeholder="City"> <input
-			type="submit" value="Find Event">
-	</form>
-	<br>
-	<form action="/search-venue">
-		<input type="text" name="venue" placeholder="Venue"> <input
-			type="submit" value="Find Event">
-	</form>
-
-
+<h1>Venue Search Results</h1>
 
 	<a href="/bucketlist"><button type="button" class="btn btn-danger">Bucket List</button></a>
 
@@ -44,7 +31,7 @@
 					<!-- Input actual EL Tags for table when ready -->
 					<tr>
 						<th>${i.count}</th>
-						<td>${e.name}</td>
+						<td><a href="{/search-event-at-venue?venueId=${e.venueId}">${e.name}</a></td>
 						<td>${e.getCity().getName()}, ${e.getState().getStateCode()}</td>
 					</tr>
 				</c:forEach>
@@ -52,5 +39,10 @@
 		</table>
 	</div>
 
+<h2>Search For Another Venue</h2>
+<form action="/search-venue">
+		<input type="text" name="venue" placeholder="Venue"> 
+		<input type="submit" value="Find Venue">
+	</form>
 </body>
 </html>
