@@ -13,7 +13,13 @@
 </head>
 <body>
 <div class="container">
-Hi
+<table>
+  <tr>
+    <td>${t.name }</td>
+  </tr>
+</table>
+
+${t.name }
 </div>
 </body>
 </html>
