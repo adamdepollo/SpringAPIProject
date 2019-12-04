@@ -8,6 +8,7 @@ public class Event {
 	private String url;
 	private String name;
 	private PriceRanges[] priceRanges;
+	private SecondLayer sl;
 	
 	
 	public Event() {
@@ -15,11 +16,12 @@ public class Event {
 	}
 
 
-	public Event(String url, String name, PriceRanges[] priceRanges) {
+	public Event(String url, String name, PriceRanges[] priceRanges, SecondLayer sl) {
 		super();
 		this.url = url;
 		this.name = name;
 		this.priceRanges = priceRanges;
+		this.setSl(sl);
 	}
 
 
@@ -50,6 +52,16 @@ public class Event {
 
 	public void setPriceRanges(PriceRanges[] priceRanges) {
 		this.priceRanges = priceRanges;
+	}
+
+
+	public SecondLayer getSl() {
+		return sl;
+	}
+
+
+	public void setSl(SecondLayer sl) {
+		this.sl = sl;
 	}
 	
 	

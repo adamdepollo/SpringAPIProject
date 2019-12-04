@@ -46,7 +46,7 @@
 					<tr>
 						<th>${i.count}</th>
 						<td>${e.name}</td>
-						<td>$${String.format("%.2f", e.priceRanges[0].getMin())} - $${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+						<td>${String.format("%.2f", e.priceRanges[0].getMin())} - $${String.format("%.2f", e.priceRanges[0].getMax())}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

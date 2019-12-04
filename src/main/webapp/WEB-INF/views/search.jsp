@@ -15,18 +15,12 @@
 			type="submit" value="Find Event">
 	</form>
 	<br>
-	<!--  
 	<form action="/search-venue">
 		<input type="text" name="venue" placeholder="Venue"> <input
 			type="submit" value="Find Event">
 	</form>
-	
-	-->
-
-
 
 	<button type="button" class="btn btn-danger">Bucket List</button>
-
 
 </body>
 </html>
