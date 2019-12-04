@@ -28,7 +28,7 @@
 
 
 
-	<button type="button" class="btn btn-danger">Bucket List</button>
+	<a href="/bucketlist"><button type="button" class="btn btn-danger">Bucket List</button></a>
 
 	<div class="container">
 		<table class="table">
@@ -45,7 +45,7 @@
 					<!-- Input actual EL Tags for table when ready -->
 					<tr>
 						<th>${i.count}</th>
-						<td>${e.name}</td>
+						<td>${e.name}<button type="button" class="btn btn-primary">Add to Bucket List</button></td>
 						<td>${String.format("%.2f", e.priceRanges[0].getMin())} - $${String.format("%.2f", e.priceRanges[0].getMax())}</td>
 					</tr>
 				</c:forEach>

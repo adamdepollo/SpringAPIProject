@@ -21,6 +21,11 @@
 	</form>
 
 	<button type="button" class="btn btn-danger">Bucket List</button>
+	<br>
+	<br>
+	<br>
+	
+	<a href="/"><button type="button" class="btn btn-warning">Home</button></a>
 
 </body>
 </html>
