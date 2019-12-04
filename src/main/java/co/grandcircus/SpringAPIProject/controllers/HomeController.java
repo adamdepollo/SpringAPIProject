@@ -27,19 +27,21 @@ public class HomeController {
 	public ModelAndView search() {
 		return new ModelAndView("search");
 	}
-	
+
 	@RequestMapping("/search-event")
 	public ModelAndView searchResults(String name, String city) {
 		String url;
 		if (name == null) {
-			url = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + city + "&countryCode=US&apikey=" + ticketmasterKey;
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + city + "&countryCode=US&apikey="
+					+ ticketmasterKey;
 
-		}
-		else if (city == null) {
-			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&countryCode=US&apikey=" + ticketmasterKey;
+		} else if (city == null) {
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&countryCode=US&apikey="
+					+ ticketmasterKey;
 
 		} else {
-			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&city=" + city + "&countryCode=US&apikey=" + ticketmasterKey;
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&city=" + city
+					+ "&countryCode=US&apikey=" + ticketmasterKey;
 
 		}
 		HttpHeaders headers = new HttpHeaders();
@@ -48,33 +50,35 @@ public class HomeController {
 		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), EventResults.class);
 		FirstLayer fl = response.getBody().getEmb();
-		
+
 		return new ModelAndView("results", "t", fl.getEvents());
 	}
-	
+
 	@RequestMapping("/search-venue")
 	public ModelAndView searchVenue(String venue) {
-		String url = "https://app.ticketmaster.com/discovery/v2/venues.json?keyword=" + venue + "&countryCode=US&apikey=" + ticketmasterKey;
+		String url = "https://app.ticketmaster.com/discovery/v2/venues.json?keyword=" + venue
+				+ "&countryCode=US&apikey=" + ticketmasterKey;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.USER_AGENT, "test");
 
 		ResponseEntity<VenueResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), VenueResults.class);
 		FirstLayerVenue fl = response.getBody().getEmb();
-		
+
 		return new ModelAndView("venue-results", "t", fl.getVenues());
 	}
-	
+
 	@RequestMapping("/search-event-at-venue")
 	public ModelAndView searchVenueEvents(String venueId) {
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + venueId + "&countryCode=US&apikey=" + ticketmasterKey;
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + venueId
+				+ "&countryCode=US&apikey=" + ticketmasterKey;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.USER_AGENT, "test");
 
 		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), EventResults.class);
 		FirstLayer fl = response.getBody().getEmb();
-		
+
 		return new ModelAndView("results", "t", fl.getEvents());
 	}
 }

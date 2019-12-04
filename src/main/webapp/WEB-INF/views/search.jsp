@@ -10,14 +10,16 @@
 
 	<h1>Search Event</h1>
 	<form action="/search-event">
-		<input type="text" name="name" placeholder="Event Name"> <input
+		<input type="hidden" name="u" value="${user}"> <input
+			type="text" name="name" placeholder="Event Name"> <input
 			type="text" name="city" placeholder="City"> <input
 			type="submit" value="Find Event">
 	</form>
 	<br>
 	<form action="/search-venue">
-		<input type="text" name="venue" placeholder="Venue"> 
-		<input type="submit" value="Find Event">
+		<input type="hidden" name="u" value="${user}"><input
+			type="text" name="venue" placeholder="Venue"> <input
+			type="submit" value="Find Event">
 	</form>
 
 	<button type="button" class="btn btn-danger">Bucket List</button>

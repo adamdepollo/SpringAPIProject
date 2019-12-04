@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<h1>Search Results</h1>
+	<h1>Search Results</h1>
 
 
 	<div class="container">
@@ -24,7 +24,7 @@
 					<th>Event Name</th>
 					<th>Price</th>
 					<th>Add To Bucket List</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
@@ -33,31 +33,35 @@
 					<tr>
 						<th>${i.count}</th>
 						<td>${e.name}</td>
-						
+
 						<c:choose>
-     <c:when test="${empty e.priceRanges[0].getMin()}">
-       <td> Unknown </td>
-    </c:when>
-    <c:otherwise>
-        <td>$${String.format("%.2f", e.priceRanges[0].getMin())}-
-							$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
-   				 </c:otherwise>
-			</c:choose>
-						
-						
-						<td><button type="button" class="btn btn-warning">Add
-								to Bucket List</button></td>
+							<c:when test="${empty e.priceRanges[0].getMin()}">
+								<td>Unknown</td>
+							</c:when>
+							<c:otherwise>
+								<td>$${String.format("%.2f", e.priceRanges[0].getMin())}-
+									$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+							</c:otherwise>
+						</c:choose>
+
+
+						<td><form action="add-to-bucketlist">
+								<input type="hidden" name="u" value="${user}"> <input
+									type="hidden" name="e" value="${e}"><input
+									type="Submit" class="btn btn-warning"
+									value="Add to Bucket List">
+							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	
-		<a href="/bucketlist"><button type="button" class="btn btn-danger" style="float: right;">   Go To Bucket  
-			List</button></a>
+
+	<a href="/bucketlist"><button type="button" class="btn btn-danger"
+			style="float: right;">Go To Bucket List</button></a>
 	<br>
 	<br>
-		<h2>Search For Another Event</h2>
+	<h2>Search For Another Event</h2>
 	<form action="/search-event">
 		<input type="text" name="name" placeholder="Event Name"> <input
 			type="text" name="city" placeholder="City"> <input
@@ -68,12 +72,12 @@
 		<input type="text" name="venue" placeholder="Venue"> <input
 			type="submit" value="Find Event">
 	</form>
-	
+
 	<br>
 	<br>
 	<br>
 	<br>
-	
+
 
 
 </body>
