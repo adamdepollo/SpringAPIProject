@@ -31,7 +31,7 @@
 					<!-- Input actual EL Tags for table when ready -->
 					<tr>
 						<th>${i.count}</th>
-						<td><a href="{/search-event-at-venue?venueId=${e.venueId}">${e.name}</a></td>
+						<td><a href="search-event-at-venue?venueId=${e.venueId}">${e.name}</a></td>
 						<td>${e.getCity().getName()}, ${e.getState().getStateCode()}</td>
 					</tr>
 				</c:forEach>
