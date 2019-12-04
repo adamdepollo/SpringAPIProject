@@ -1,7 +1,11 @@
 package co.grandcircus.SpringAPIProject.pojos;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,10 +15,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Event {
 
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer event_id;
+	
 	private String id;
 	private String url;
 	private String name;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private PriceRanges[] priceRanges;
 	
 	

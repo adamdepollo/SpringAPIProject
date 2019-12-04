@@ -45,7 +45,7 @@
 						</c:choose>
 
 
-						<td><a href="save-event?e=${e}"class="btn btn-warning">Save Event to Bucketlist</a></td>
+						<td><a href="save-event?id=${e.getId()}"class="btn btn-warning">Save Event to Bucketlist</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

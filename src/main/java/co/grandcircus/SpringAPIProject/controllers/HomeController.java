@@ -25,7 +25,7 @@ public class HomeController {
 	String ticketmasterKey;
 
 	RestTemplate rt = new RestTemplate();
-	
+
 	@Autowired
 	EventRepo er;
 
@@ -87,13 +87,23 @@ public class HomeController {
 
 		return new ModelAndView("results", "t", fl.getEvents());
 	}
-	
+
 	@RequestMapping("/save-event")
-	public ModelAndView saveEvent(Event e) {
+	public ModelAndView saveEvent(String id) {
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?id=" + id + "&countryCode=US&apikey="
+				+ ticketmasterKey;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.USER_AGENT, "test");
+
+		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
+				new HttpEntity<String>("parameters", headers), EventResults.class);
+		FirstLayer fl = response.getBody().getEmb();
+		Event e = fl.getEvents().get(0);
+		System.out.println(e.getName());
 		er.save(e);
 		return new ModelAndView("bucketlist", "events", er.findAll());
 	}
-	
+
 	@RequestMapping("/delete-event")
 	public ModelAndView deleteEvent(Event e) {
 		er.deleteById(e.getId());
