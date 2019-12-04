@@ -41,4 +41,28 @@ public class HomeController {
 		
 		return new ModelAndView("search");
 	}
+	
+	@RequestMapping("/search-event")
+	public ModelAndView searchResults(String name, String city) {
+		String url;
+		if (name == null) {
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + city + "&countryCode=US&apikey=" + ticketmasterKey;
+
+		}
+		else if (city == null) {
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&countryCode=US&apikey=" + ticketmasterKey;
+
+		} else {
+			url = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + name + "&city=" + city + "&countryCode=US&apikey=" + ticketmasterKey;
+
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.USER_AGENT, "test");
+
+		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
+				new HttpEntity<String>("parameters", headers), EventResults.class);
+		FirstLayer fl = response.getBody().getEmb();
+		
+		return new ModelAndView("results", "t", fl.getEvents());
+	}
 }
