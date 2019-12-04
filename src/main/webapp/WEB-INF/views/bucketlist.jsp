@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Search Results</title>
-<link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-mtS696VnV9qeIoC8w/PrPoRzJ5gwydRVn0oQ9b+RJOPxE1Z1jXuuJcyeNxvNZhdx"
-	crossorigin="anonymous">
+<title>Bucket List Results</title>
 </head>
 <body>
 	<h1>Search Results</h1>
@@ -28,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="e" items="${t}" varStatus="i">
+				<c:forEach var="e" items="${events}" varStatus="i">
 					<!-- Input actual EL Tags for table when ready -->
 					<tr>
 						<th>${i.count}</th>
@@ -72,6 +66,7 @@
 	<br>
 	<br>
 	<br>
+
 
 
 
