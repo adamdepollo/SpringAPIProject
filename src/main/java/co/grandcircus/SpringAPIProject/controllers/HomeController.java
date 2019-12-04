@@ -93,4 +93,10 @@ public class HomeController {
 		er.save(e);
 		return new ModelAndView("bucketlist", "events", er.findAll());
 	}
+	
+	@RequestMapping("/delete-event")
+	public ModelAndView deleteEvent(Event e) {
+		er.deleteById(e.getId());
+		return new ModelAndView("bucketlist", "events", er.findAll());
+	}
 }
