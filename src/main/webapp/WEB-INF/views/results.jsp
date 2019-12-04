@@ -33,8 +33,18 @@
 					<tr>
 						<th>${i.count}</th>
 						<td>${e.name}</td>
-						<td>${String.format("%.2f", e.priceRanges[0].getMin())}-
+						
+						<c:choose>
+     <c:when test="${empty e.priceRanges[0].getMin()}">
+       <td> Unknown </td>
+    </c:when>
+    <c:otherwise>
+        <td>$${String.format("%.2f", e.priceRanges[0].getMin())}-
 							$${String.format("%.2f", e.priceRanges[0].getMax())}</td>
+   				 </c:otherwise>
+			</c:choose>
+						
+						
 						<td><button type="button" class="btn btn-warning">Add
 								to Bucket List</button></td>
 					</tr>
