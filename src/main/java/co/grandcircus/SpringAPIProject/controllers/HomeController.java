@@ -35,4 +35,9 @@ public class HomeController {
 		return new ModelAndView("index", "t", fl.getEvents());
 
 	}
+	@RequestMapping("/search")
+	public ModelAndView search() {
+		
+		return new ModelAndView("search");
+	}
 }
