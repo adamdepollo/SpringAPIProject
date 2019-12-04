@@ -9,6 +9,31 @@ public class EventResults {
 	@JsonProperty("_embedded")
 	FirstLayer emb;
 
+	public FirstLayer getEmb() {
+		return emb;
+	}
+
+	public void setEmb(FirstLayer emb) {
+		this.emb = emb;
+	}
+
+	public EventResults(FirstLayer emb) {
+		super();
+		this.emb = emb;
+	}
+
+	public EventResults() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "EventResults [emb=" + emb + "]";
+	}
+
+	
+
 	
 
 }

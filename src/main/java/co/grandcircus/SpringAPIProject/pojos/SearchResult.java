@@ -25,6 +25,11 @@ public class SearchResult {
 	public void set_embedded(ArrayList<Event> _embedded) {
 		this._embedded = _embedded;
 	}
+
+	@Override
+	public String toString() {
+		return "SearchResult [_embedded=" + _embedded + "]";
+	}
 	
 	
 }
