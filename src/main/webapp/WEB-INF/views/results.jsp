@@ -7,13 +7,16 @@
 <meta charset="ISO-8859-1">
 <title>Search Results</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/slate/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-mtS696VnV9qeIoC8w/PrPoRzJ5gwydRVn0oQ9b+RJOPxE1Z1jXuuJcyeNxvNZhdx"
+	integrity="sha384-G9YbB4o4U6WS4wCthMOpAeweY4gQJyyx0P3nZbEBHyz+AtNoeasfRChmek1C2iqV"
 	crossorigin="anonymous">
 </head>
 <body>
 	<h1>Search Results</h1>
+
+
+
 
 
 	<div class="container">
@@ -39,31 +42,33 @@
 								<td>Unknown</td>
 							</c:when>
 							<c:otherwise>
-								<td>$${String.format("%.2f", e.getPriceRanges().get(0).getMin())}-
-									$${String.format("%.2f", e.getPriceRanges().get(0).getMax())}</td>
+								<td>$${String.format("%.2f",
+									e.getPriceRanges().get(0).getMin())}- $${String.format("%.2f",
+									e.getPriceRanges().get(0).getMax())}</td>
 							</c:otherwise>
 						</c:choose>
 
 
-						<td><a href="save-event?id=${e.getId()}"class="btn btn-warning">Save Event to Bucketlist</a></td>
+						<td><a href="save-event?id=${e.getId()}"
+							class="btn btn-warning">Save Event to Bucketlist</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-
+	<a href="/search"><button type="button" class="btn btn-danger">Search</button></a>
 	<a href="/bucketlist"><button type="button" class="btn btn-danger"
 			style="float: right;">Go To Bucket List</button></a>
 	<br>
 	<br>
 	<h2>Search For Another Event</h2>
-	<form action="/search-event">
+	<form action="/search-event" method="post">
 		<input type="text" name="name" placeholder="Event Name"> <input
 			type="text" name="city" placeholder="City"> <input
 			type="submit" value="Find Event">
 	</form>
 	<br>
-	<form action="/search-venue">
+	<form action="/search-venue" method="post">
 		<input type="text" name="venue" placeholder="Venue"> <input
 			type="submit" value="Find Event">
 	</form>
