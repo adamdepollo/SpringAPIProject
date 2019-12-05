@@ -1,5 +1,6 @@
 package co.grandcircus.SpringAPIProject.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +63,12 @@ public class HomeController {
 		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), EventResults.class);
 		FirstLayer fl = response.getBody().getEmb();
-
-		return new ModelAndView("results", "t", fl.getEvents());
+		if (fl == null) {
+			return new ModelAndView("results", "t", new ArrayList<>());
+		}
+		else {
+			return new ModelAndView("results", "t", fl.getEvents());
+		}
 	}
 
 	@RequestMapping("/search-venue")
@@ -90,8 +95,15 @@ public class HomeController {
 		ResponseEntity<EventResults> response = rt.exchange(url, HttpMethod.GET,
 				new HttpEntity<String>("parameters", headers), EventResults.class);
 		FirstLayer fl = response.getBody().getEmb();
+		if (fl == null) {
+			return new ModelAndView("results", "t", new ArrayList<>());
+		}
+		else {
+			return new ModelAndView("results", "t", fl.getEvents());
+		}
+		
 
-		return new ModelAndView("results", "t", fl.getEvents());
+		
 	}
 
 	@RequestMapping("/save-event")
