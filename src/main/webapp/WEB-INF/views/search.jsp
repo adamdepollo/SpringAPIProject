@@ -12,27 +12,25 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<div class="container">
+		<h1>Search Event</h1>
+		<form action="/search-event" method="post">
+			<input type="hidden" name="u" value="${user}"> <input
+				type="text" name="name" placeholder="Event Name"> <input
+				type="text" name="city" placeholder="City"> <input
+				type="submit" value="Find Event">
+		</form>
+		<br>
+		<form action="/search-venue" method="post">
+			<input type="hidden" name="u" value="${user}"><input
+				type="text" name="venue" placeholder="Venue"> <input
+				type="submit" value="Find Event">
+		</form>
 
-	<h1>Search Event</h1>
-	<form action="/search-event" method="post">
-		<input type="hidden" name="u" value="${user}"> <input
-			type="text" name="name" placeholder="Event Name"> <input
-			type="text" name="city" placeholder="City"> <input
-			type="submit" value="Find Event">
-	</form>
-	<br>
-	<form action="/search-venue" method="post">
-		<input type="hidden" name="u" value="${user}"><input
-			type="text" name="venue" placeholder="Venue"> <input
-			type="submit" value="Find Event">
-	</form>
 
-	
 
-	<br>
-
-	
-	<a href="/bucketlist"><button type="button" class="btn btn-danger">Bucket List</button></a>
-
+		<br> <a href="/go-to-bucketlist" class="btn btn-danger"
+			style="float: right;">Go To Bucket List</a>
+	</div>
 </body>
 </html>

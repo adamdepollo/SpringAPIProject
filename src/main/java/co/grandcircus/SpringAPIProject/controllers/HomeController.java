@@ -132,4 +132,10 @@ public class HomeController {
 		er.delete(er.findById(id));
 		return new ModelAndView("bucketlist", "events", er.findAll());
 	}
+	
+	@RequestMapping("/go-to-bucketlist")
+	public ModelAndView goToBucklist() {
+		List<Event> events = er.findAll();
+		return new ModelAndView("bucketlist", "events", events);
+	}
 }

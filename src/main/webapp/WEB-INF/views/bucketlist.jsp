@@ -55,8 +55,6 @@
 		</table>
 	</div>
 
-	<a href="/bucketlist"><button type="button" class="btn btn-danger"
-			style="float: right;">Go To Bucket List</button></a>
 	<br>
 	<br>
 	<h2>Search For Another Event</h2>

@@ -57,8 +57,7 @@
 		</table>
 	</div>
 	<a href="/search"><button type="button" class="btn btn-danger">Search</button></a>
-	<a href="/bucketlist"><button type="button" class="btn btn-danger"
-			style="float: right;">Go To Bucket List</button></a>
+	<a href="/go-to-bucketlist" class = "btn btn-danger" style = "float: right;">Go To Bucket List</a>
 	<br>
 	<br>
 	<h2>Search For Another Event</h2>
